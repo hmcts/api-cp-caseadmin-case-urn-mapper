@@ -23,11 +23,11 @@ class OpenAPIConfigurationLoaderTest {
 
         Info info = openAPI.getInfo();
         assertNotNull(info);
-        assertEquals("Common Platform API Refdata Court Hearing Court Houses", info.getTitle());
-        assertEquals("Reference Data API providing information on Court Houses associated with a Court Hearing", info.getDescription());
+        assertEquals("Common Platform API Case URL Mapper", info.getTitle());
+        assertEquals("Case URL Mapper specification", info.getDescription());
 
-        String apiGitHubRepository = "api-cp-refdata-courthearing-courthouses";
-        String expectedVersion = System.getProperty("API_SPEC_VERSION", "0.0.0");
+        String apiGitHubRepository = "api-cp-caseadmin-case-urn-mapper";
+        String expectedVersion = System.getProperty("API_SPEC_VERSION", "0.1.0");
         log.info("API version set to: {}", expectedVersion);
 
         assertEquals(expectedVersion, info.getVersion());
