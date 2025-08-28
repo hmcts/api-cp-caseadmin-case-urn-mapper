@@ -1,6 +1,6 @@
-# API-CP Reference Data Court Hearing Courthouses
+# API-CP Case Admin Case URN Mapper
 
-The Court Hearing Courthouses API provides a list of courthouses that are used in the Court Hearing Hearings and Schedule and Listing APIs.
+The Case Admin Case URN Mapper API provides a caseURN to caseID mapping.
 
 ## Documentation
 

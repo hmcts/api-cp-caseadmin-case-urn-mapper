@@ -244,14 +244,14 @@ tasks.withType(Checkstyle).configureEach {
 }
 
 ext {
-  springBootVersion = "3.5.4"
+  springBootVersion = "3.5.5"
   lombokVersion = "1.18.38"
 }
 
 dependencies {
   // OpenAPI Generator runtime support
-  implementation 'org.openapitools:openapi-generator-core:7.14.0'
-  implementation 'io.swagger.parser.v3:swagger-parser:2.1.31'
+  implementation 'org.openapitools:openapi-generator-core:7.15.0'
+  implementation 'io.swagger.parser.v3:swagger-parser:2.1.32'
   implementation 'io.swagger.core.v3:swagger-annotations:2.2.36'
   implementation 'net.logstash.logback:logstash-logback-encoder:8.1'
 
