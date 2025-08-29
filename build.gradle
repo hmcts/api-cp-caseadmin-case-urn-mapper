@@ -255,7 +255,7 @@ dependencies {
   implementation 'io.swagger.core.v3:swagger-annotations:2.2.36'
   implementation 'net.logstash.logback:logstash-logback-encoder:8.1'
 
-  implementation 'com.fasterxml.jackson.core:jackson-annotations:2.19.2'
+  implementation 'com.fasterxml.jackson.core:jackson-annotations:2.20'
   implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
   implementation "org.springframework.boot:spring-boot-starter-validation:$springBootVersion"
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
