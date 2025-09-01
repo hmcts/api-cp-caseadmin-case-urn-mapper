@@ -51,11 +51,11 @@ components:
         caseId:
           description: Case ID
           type: string
-          example: "CASE-ID-EXAMPLE"
+          example: "01230012321"
         caseUrn:
           description: Unique reference number for the case
           type: string
-          example: "CASE-URN-EXAMPLE"
+          example: "CA-2022-012345"
     ErrorResponse:
       type: object
       properties:
