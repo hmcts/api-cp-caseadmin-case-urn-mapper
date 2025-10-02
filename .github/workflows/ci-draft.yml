@@ -90,6 +90,7 @@ jobs:
           gradle build -DAPI_SPEC_VERSION=$ARTEFACT_VERSION
 
   Push-Draft-OpenAPI-Spec:
+    if: github.event_name == 'push'
     needs: [ Test ]
     uses: ./.github/workflows/publish-openapi-spec.yml
     secrets:
