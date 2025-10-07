@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Common Platform API Case URL Mapper
+  title: Common Platform API Case URN Mapper
   description: Case URL Mapper specification
   version: 0.1.0
   contact:
