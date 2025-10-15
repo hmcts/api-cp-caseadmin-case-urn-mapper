@@ -41,12 +41,15 @@ jobs:
       - name: Install SwaggerHub CLI
         run: npm install -g swaggerhub-cli
 
-      - name: Set CLI_API_REF env var
+      - name: Set env variables in ${GITHUB_ENV}
         env:
           APIHUB_OWNER: ${{ inputs.apihub_owner }}
           API_NAME: ${{ inputs.api_name }}
           API_VERSION: ${{ inputs.api_version }}
         run: |
+          echo "APIHUB_OWNER=${APIHUB_OWNER}" >> "$GITHUB_ENV"
+          echo "API_NAME=${API_NAME}" >> "$GITHUB_ENV"
+          echo "API_VERSION=${API_VERSION}" >> "$GITHUB_ENV"
           echo "CLI_API_REF=${APIHUB_OWNER}/${API_NAME}/${API_VERSION}" >> "$GITHUB_ENV"
           echo "Using CLI_API_REF=${CLI_API_REF}"
 
@@ -90,6 +93,28 @@ jobs:
             cat error.log
             exit 1
           fi
+
+        # If release version then find all apis where published=false
+        # And then filter for those with sha snapshot versions i.e.  1.0.0-be4c28d
+        # Then delete all those found
+      - name: Delete snapshot versions
+        if: inputs.is_release
+        run: |
+            set -o pipefail
+            echo "DELETING ${APIHUB_OWNER}/${API_NAME} snapshots"
+            swaggerhub api:get "${APIHUB_OWNER}/${API_NAME}/" | jq '.apis.[] | select( any(.properties[]; .type == "X-Published" and .value=="false") ) | .properties[] | select(.type == "X-Version")' > unpublished-versions.json
+            echo "unpublished-versions ... START"
+            cat unpublished-versions.json
+            echo "unpublished-versions ... END"
+            cat unpublished-versions.json | egrep "value.*\-[a-f0-9]{7}" | awk '{ print $2 }' | sed s/\"//g > delete-versions.json
+            echo "delete-versions ... START"
+            cat delete-versions.json
+            echo "delete-versions ... END"
+            cat delete-versions.json | while read DELETEVERSION
+            do
+                echo "deleting ${API_NAME} with version ${DELETEVERSION}"
+                swaggerhub api:delete "${APIHUB_OWNER}/${API_NAME}/${DELETEVERSION}" -f
+            done
 
         # https://github.com/SmartBear/swaggerhub-cli?tab=readme-ov-file#swaggerhub-apisetdefault
       - name: Set released version to the default API Definition
