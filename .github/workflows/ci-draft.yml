@@ -92,7 +92,7 @@ jobs:
   Push-Draft-OpenAPI-Spec:
     if: github.event_name == 'push'
     needs: [ Test ]
-    uses: ./.github/workflows/publish-openapi-spec.yml
+    uses: ./.github/workflows/publish-openapi-spec-to-apihub.yml
     secrets:
       SWAGGERHUB_API_KEY: ${{ secrets.APIHUB_API_KEY }}
     with:
