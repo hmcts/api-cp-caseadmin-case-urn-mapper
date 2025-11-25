@@ -16,7 +16,7 @@ jobs:
       artefact_version: ${{ steps.artefact.outputs.release_version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -38,7 +38,7 @@ jobs:
       upload_artifact_name: ${{ steps.update_spec.outputs.upload_artifact_name }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Update OpenAPI Spec Version
         id: update_spec
@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Set up JDK
         uses: actions/setup-java@v5
@@ -82,7 +82,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Download updated OpenAPI file
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ needs.Update-Spec-Version.outputs.upload_artifact_name }}
           path: ${{ env.FILE_PATH_OPENAPI }}
