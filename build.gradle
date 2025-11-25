@@ -118,20 +118,6 @@ publishing {
   }
 }
 
-//Creation of Software Bill of Materials
-//https://github.com/CycloneDX/cyclonedx-gradle-plugin
-cyclonedxBom {
-  projectType = "library" // or application
-  includeConfigs = ["runtimeClasspath"]
-  skipConfigs = ["test", "testImplementation"]
-  schemaVersion = "1.6"
-  componentVersion = providers.provider { project.version.toString() }
-  destination = file("${layout.buildDirectory.get().asFile.absolutePath}/reports")
-  includeBuildSystem = true
-  outputName = "bom"
-  outputFormat = "json"
-}
-
 jar {
   dependsOn tasks.named('cyclonedxBom')
   if (file("CHANGELOG.md").exists()) {
@@ -143,7 +129,7 @@ jar {
     println "⚠️  CHANGELOG.md not found, skipping inclusion in JAR"
   }
 
-  def sbomFile = file("${layout.buildDirectory.get().asFile.absolutePath}/reports/bom.json")
+  def sbomFile = file("${layout.buildDirectory.get().asFile.absolutePath}/reports/cyclonedx/bom.json")
   if (sbomFile.exists()) {
     println "✅ Including SBOM from ${sbomFile} in JAR"
     from(sbomFile) {
