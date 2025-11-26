@@ -1,24 +1,22 @@
 package uk.gov.hmcts.cp.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.OpenAPIV3Parser;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class OpenAPIConfigurationLoader {
 
     private static final Logger LOG = LoggerFactory.getLogger(OpenAPIConfigurationLoader.class);
     private static final String JUDGES_OPENAPI = "openapi/caseUrnMapper.openapi.yml";
 
-    public static OpenAPI loadOpenApiFromClasspath(final String path) {
+    public static OpenAPI loadOpenApiFromClasspath(String path) {
         if (StringUtils.isBlank(path)) {
             throw new IllegalArgumentException("Provided path is null or blank");
         }
