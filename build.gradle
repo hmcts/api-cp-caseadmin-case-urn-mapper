@@ -22,7 +22,7 @@ apply {
 }
 
 ext {
-  springBootVersion = "3.5.7"
+  springBootVersion = "4.0.0"
   lombokVersion = "1.18.38"
 }
 
@@ -36,8 +36,12 @@ dependencies {
   implementation 'com.fasterxml.jackson.core:jackson-annotations:2.20'
   implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
   implementation "org.springframework.boot:spring-boot-starter-validation:$springBootVersion"
+  testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+  testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+  testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
   testImplementation(platform('org.junit:junit-bom:6.0.1'))
   testImplementation 'org.junit.jupiter:junit-jupiter-api'
