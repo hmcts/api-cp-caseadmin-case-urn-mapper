@@ -16,7 +16,7 @@ public class OpenAPIConfigurationLoader {
     private static final Logger LOG = LoggerFactory.getLogger(OpenAPIConfigurationLoader.class);
     private static final String JUDGES_OPENAPI = "openapi/caseUrnMapper.openapi.yml";
 
-    public static OpenAPI loadOpenApiFromClasspath(String path) {
+    public static OpenAPI loadOpenApiFromClasspath(final String path) {
         if (StringUtils.isBlank(path)) {
             throw new IllegalArgumentException("Provided path is null or blank");
         }
