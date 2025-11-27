@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class OpenAPISpecTest {
     @Test
     void generated_error_response_should_have_expected_fields() {
-        assertThat(ErrorResponse.class).hasDeclaredFields("error", "message", "details", "traceId");
+        assertThat(ErrorResponse.class).hasDeclaredFields("error", "details", "message", "timestamp", "traceId");
     }
 
     @Test
