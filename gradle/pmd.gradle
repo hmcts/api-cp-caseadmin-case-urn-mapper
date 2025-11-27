@@ -4,13 +4,6 @@ pmd {
   ignoreFailures = false
 }
 
-tasks.withType(Checkstyle).configureEach {
-  def generatedDir = file("${layout.buildDirectory.get().asFile.absolutePath}/generated/src/main/java").canonicalPath
-  source = source.filter { file ->
-    !file.canonicalPath.startsWith(generatedDir)
-  }
-}
-
 tasks.named("pmdMain").configure {
   onlyIf { gradle.startParameter.taskNames.contains(name) }
 }
@@ -23,5 +16,12 @@ tasks.withType(Pmd) {
   reports {
     xml.required.set(true)
     html.required.set(true)
+  }
+}
+
+tasks.withType(Checkstyle).configureEach {
+  def generatedDir = file("${layout.buildDirectory.get().asFile.absolutePath}/generated/src/main/java").canonicalPath
+  source = source.filter { file ->
+    !file.canonicalPath.startsWith(generatedDir)
   }
 }

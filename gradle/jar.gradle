@@ -9,7 +9,7 @@ jar {
     println "⚠️  CHANGELOG.md not found, skipping inclusion in JAR"
   }
 
-  def sbomFile = file("${layout.buildDirectory.get().asFile.absolutePath}/reports/cyclonedx/bom.json")
+  def sbomFile = file("${layout.buildDirectory.get().asFile.absolutePath}/reports/bom.json")
   if (sbomFile.exists()) {
     println "✅ Including SBOM from ${sbomFile} in JAR"
     from(sbomFile) {

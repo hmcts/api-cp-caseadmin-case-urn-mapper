@@ -2,7 +2,7 @@ def formatterUrl = 'https://raw.githubusercontent.com/hmcts/api-cp-code-style/re
 def formatterPath = "${layout.buildDirectory.get().asFile.absolutePath}/eclipse-formatter.xml"
 
 def inputSpecFile = fileTree("src/main/resources/openapi")
-  .matching { include("*.openapi.yml") }
+  .matching { include("openapi-spec.yml") }
   .singleFile
 
 spotless {
@@ -38,10 +38,10 @@ tasks.named("openApiGenerate") {
   inputs.file(inputSpecFile)
 }
 
-//The OpenAPI generator automatically generates constructors for models based on the schema.
-//Applying Lombok’s @AllArgsConstructor and @lombok.NoArgsConstructor will try to generate a constructor with the same signature.
-//The duplicate constructors are causing a compilation error.
-//If the schema becomes more complicated then add @lombok.AllArgsConstructor and @lombok.NoArgsConstructor back as it will generate other constructors which will not clash
+// The OpenAPI generator automatically generates constructors for models based on the schema.
+// Applying Lombok’s @AllArgsConstructor and @lombok.NoArgsConstructor will try to generate a constructor with the same signature.
+// The duplicate constructors are causing a compilation error.
+// If the schema becomes more complicated then add @lombok.AllArgsConstructor and @lombok.NoArgsConstructor back as it will generate other constructors which will not clash
 openApiGenerate {
   generatorName = "spring"
   inputSpec = inputSpecFile.absolutePath
