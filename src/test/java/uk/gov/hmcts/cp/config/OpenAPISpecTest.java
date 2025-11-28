@@ -22,6 +22,7 @@ class OpenAPISpecTest {
 
     @Test
     void generated_api_should_have_expected_methods() {
+        assertThat(CaseIdByCaseUrnApi.PATH_GET_CASE_ID_BY_CASE_URN).isEqualTo("/urnmapper/{case_urn}");
         assertThat(CaseIdByCaseUrnApi.class).hasDeclaredMethods("getCaseIdByCaseUrn", "getRequest");
     }
 }

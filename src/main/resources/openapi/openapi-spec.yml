@@ -14,7 +14,7 @@ paths:
       description: Retrieve details of a case ID by case URN.
       operationId: getCaseIdByCaseUrn
       tags:
-        - case ID by case URN
+        - CaseIdByCaseUrn
       parameters:
         - in: path
           name: case_urn
