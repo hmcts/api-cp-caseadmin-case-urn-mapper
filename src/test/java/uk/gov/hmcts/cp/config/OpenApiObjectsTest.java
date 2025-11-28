@@ -9,7 +9,7 @@ import uk.gov.hmcts.cp.openapi.model.ErrorResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-class OpenAPISpecTest {
+class OpenApiObjectsTest {
     @Test
     void generated_error_response_should_have_expected_fields() {
         assertThat(ErrorResponse.class).hasDeclaredFields("error", "details", "message", "timestamp", "traceId");
