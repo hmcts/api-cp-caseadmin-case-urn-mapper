@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.cp.openapi.api.CaseIdByCaseUrnApi;
 import uk.gov.hmcts.cp.openapi.model.CaseMapperResponse;
 import uk.gov.hmcts.cp.openapi.model.ErrorResponse;
+import java.lang.reflect.Field;
+import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,5 +26,13 @@ class OpenApiObjectsTest {
     void generated_api_should_have_expected_methods() {
         assertThat(CaseIdByCaseUrnApi.PATH_GET_CASE_ID_BY_CASE_URN).isEqualTo("/urnmapper/{case_urn}");
         assertThat(CaseIdByCaseUrnApi.class).hasDeclaredMethods("getCaseIdByCaseUrn", "getRequest");
+    }
+    @Test
+    void generated_error_response_timestamp_should_be_instant() throws Exception {
+        Field timestampField = ErrorResponse.class.getDeclaredField("timestamp");
+
+        assertThat(timestampField.getType())
+                .as("timestamp field type")
+                .isEqualTo(Instant.class);
     }
 }
