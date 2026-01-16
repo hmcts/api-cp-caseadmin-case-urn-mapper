@@ -1,7 +1,7 @@
 java {
-  def javaVersion = JavaVersion.toVersion(System.getProperty("java.version"))
-  sourceCompatibility = javaVersion
-  targetCompatibility = javaVersion
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(25)
+  }
 }
 
 sourceSets {
@@ -10,6 +10,10 @@ sourceSets {
       srcDir "$buildDir/generated/src/main/java"
     }
   }
+}
+
+tasks.named('wrapper') {
+  delete "${projectDir}/gradlew.bat"
 }
 
 tasks.withType(JavaCompile).configureEach {
