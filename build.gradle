@@ -1,11 +1,11 @@
 plugins {
   id 'java'
-  id 'org.openapi.generator' version '7.20.0'
-  id 'com.diffplug.spotless' version '8.2.1'
+  id 'org.openapi.generator' version '7.21.0'
+  id 'com.diffplug.spotless' version '8.4.0'
   id 'jacoco'
   id 'maven-publish'
   id "com.github.ben-manes.versions" version "0.53.0"
-  id "org.cyclonedx.bom" version "3.2.0"
+  id "org.cyclonedx.bom" version "3.2.3"
   id 'pmd'
 }
 
@@ -23,15 +23,15 @@ apply {
 }
 
 ext {
-  springBootVersion = "4.0.2"
+  springBootVersion = "4.0.5"
   lombokVersion = "1.18.38"
 }
 
 dependencies {
   // OpenAPI Generator runtime support
-  implementation 'org.openapitools:openapi-generator-core:7.20.0'
-  implementation 'io.swagger.parser.v3:swagger-parser:2.1.38'
-  implementation 'io.swagger.core.v3:swagger-annotations:2.2.43'
+  implementation 'org.openapitools:openapi-generator-core:7.21.0'
+  implementation 'io.swagger.parser.v3:swagger-parser:2.1.39'
+  implementation 'io.swagger.core.v3:swagger-annotations:2.2.46'
   implementation 'net.logstash.logback:logstash-logback-encoder:9.0'
 
   implementation 'com.fasterxml.jackson.core:jackson-annotations:2.21'
