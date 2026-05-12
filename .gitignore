@@ -33,3 +33,4 @@ package-lock.json
 
 # Claude Code
 .claude/
+.claude/CLAUDE.md
