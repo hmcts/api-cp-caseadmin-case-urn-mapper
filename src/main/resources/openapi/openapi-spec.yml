@@ -1,7 +1,15 @@
 openapi: 3.0.0
 info:
   title: Common Platform API Case URN Mapper
-  description: Case URL Mapper specification
+  description: |
+    Looks up a court case using its case reference number and returns what other
+    court services need to find and display that case.
+
+    Case reference numbers appear on all court documents and correspondence — they
+    are the numbers that case workers, prosecutors, and legal professionals use to
+    refer to a case. This API takes that reference number and returns the details
+    needed to access the same case in other court services. A refresh option is
+    available to ensure the most up-to-date information is returned.
   version: 0.1.0
   contact:
     email: no-reply@hmcts.com
