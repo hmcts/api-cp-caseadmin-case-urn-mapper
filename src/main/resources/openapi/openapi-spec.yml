@@ -51,6 +51,7 @@ components:
         caseId:
           description: Case ID
           type: string
+          format: uuid
           example: "8a759185-73cc-479f-a420-38db2aa54cf2"
         caseUrn:
           description: Unique reference number for the case
