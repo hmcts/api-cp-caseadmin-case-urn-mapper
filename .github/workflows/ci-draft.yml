@@ -20,7 +20,7 @@ jobs:
       artefact_version: ${{ steps.artefact.outputs.draft_version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Necessary to fetch all history for accurate versioning
 
@@ -42,7 +42,7 @@ jobs:
       upload_artifact_name: ${{ steps.update_spec.outputs.upload_artifact_name }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Update OpenAPI Spec Version
         id: update_spec
@@ -62,7 +62,7 @@ jobs:
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up JDK
         uses: actions/setup-java@v5
@@ -84,30 +84,18 @@ jobs:
           echo "Building with ARTEFACT_VERSION=$ARTEFACT_VERSION using Java $JAVA_VERSION"
           ./gradlew build -DAPI_SPEC_VERSION=$ARTEFACT_VERSION
 
-  Push-Draft-OpenAPI-Spec:
-    if: github.event_name == 'push'
-    needs: [ Test ]
-    uses: ./.github/workflows/publish-openapi-spec.yml
-    secrets:
-      SWAGGERHUB_API_KEY: ${{ secrets.APIHUB_API_KEY }}
-    with:
-      upload_artifact_name: ${{ needs.Update-Spec-Version.outputs.upload_artifact_name }}
-      apihub_owner: ${{ vars.APIHUB_ORGANISATION }}
-      api_name: ${{ github.event.repository.name }}
-      api_version: ${{ needs.Artefact-Version.outputs.artefact_version }}
-
   Publish:
     name: Publish Artefact - Java ${{ matrix.java }}
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: [ Artefact-Version, Push-Draft-OpenAPI-Spec ]
+    needs: [ Artefact-Version, Update-Spec-Version, Test ]
     strategy:
       matrix:
         java: [ 25 ]
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up JDK
         uses: actions/setup-java@v5
