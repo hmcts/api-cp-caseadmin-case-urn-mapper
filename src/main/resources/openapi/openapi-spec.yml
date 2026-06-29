@@ -16,6 +16,9 @@ info:
   license:
     name: MIT
     url: 'https://opensource.org/licenses/MIT'
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-caseadmin-case-urn-mapper/0.1.0
 tags:
   - name: CaseIdByCaseUrn
     description: Operations for mapping a case URN to a case ID
