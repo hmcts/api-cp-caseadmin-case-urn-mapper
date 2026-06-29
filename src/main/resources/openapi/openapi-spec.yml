@@ -16,6 +16,9 @@ info:
   license:
     name: MIT
     url: 'https://opensource.org/licenses/MIT'
+tags:
+  - name: CaseIdByCaseUrn
+    description: Operations for mapping a case URN to a case ID
 paths:
   /urnmapper/{case_urn}:
     get:
