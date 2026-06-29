@@ -8,7 +8,8 @@
   ],
   "properties": {
     "caseId": {
-      "type": "string"
+      "type": "string",
+      "format": "uuid"
     },
     "caseUrn": {
       "type": "string"
